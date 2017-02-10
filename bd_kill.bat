@@ -3,6 +3,7 @@ cls
 
 echo Launching Black Desert Online
 
+:: Change this to point to your BDO launcher executable
 start /b "" "D:\Games\BDO\Black Desert Online Launcher.exe"
 
 timeout /t 180
