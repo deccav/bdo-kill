@@ -4,7 +4,7 @@ cls
 
 echo Script Started
 
-set bdProcess=[]
+set bdProcess=
 
 for /f "tokens=2" %%a in ('
     tasklist /FI "IMAGENAME eq BlackDesert64.exe" ^| findstr /i "BlackDesert64.exe"
