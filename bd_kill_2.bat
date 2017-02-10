@@ -9,21 +9,18 @@ for /f "tokens=2" %%a in ('
 ') do set ProcessId=%%a
 for /f "tokens=3,5" %%a in ('
     netstat -on
-') do if %%b==%ProcessId% echo %%a
-
-netstat > C:\bdnetstat.txt
-
-for /f "tokens=3" %%f in ('find /c /i "%%a" "C:\bdnetstat.txt"') do set bdProcess=%%f
+') do if %%b==%ProcessId% set bdProcess=%%a
 
 echo %bdProcess%
 
-if "%bdProcess%"=="1" (
+if [%bdProcess%] NEQ [] (
 	echo Black Desert connected
 	echo Looping
-	sleep 5
+	timeout 5
 	goto start
 ) else (
 	echo Process Ended
-	taskkill /im blackdesert64.exe
+	taskkill /im BlackDesert64.exe
 )
+
 
