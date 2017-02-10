@@ -1,7 +1,13 @@
 @echo off
 cls
-:start
 
+echo Launching Black Desert Online
+
+start /b "" "D:\Games\BDO\Black Desert Online Launcher.exe"
+
+timeout /t 180
+
+:start
 echo Script Started
 
 set bdProcess=
@@ -19,10 +25,9 @@ echo %bdProcess%
 if [%bdProcess%] NEQ [] (
 	echo Black Desert connected
 	echo Looping
-	timeout 5
+	timeout /t 5
 	goto start
 ) else (
 	echo Process Ended
 	taskkill /pid %ProcessId%
 )
-
