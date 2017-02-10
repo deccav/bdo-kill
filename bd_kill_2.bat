@@ -23,6 +23,6 @@ if [%bdProcess%] NEQ [] (
 	goto start
 ) else (
 	echo Process Ended
-	taskkill /im BlackDesert64.exe
+	taskkill /pid %ProcessId%
 )
 
