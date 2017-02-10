@@ -4,21 +4,25 @@ cls
 
 echo Script Started
 
-netstat > C:\bdnetstat.txt
+set bdProcess=
 
-for /f "tokens=3" %%f in ('find /c /i "5.79.111.125" "C:\bdnetstat.txt"') do set bdProcess=%%f
+for /f "tokens=2" %%a in ('
+    tasklist /FI "IMAGENAME eq BlackDesert64.exe" ^| findstr /i "BlackDesert64.exe"
+') do set ProcessId=%%a
+for /f "tokens=3,5" %%a in ('
+    netstat -on
+') do if %%b==%ProcessId% set bdProcess=%%a
 
+echo Server IP:
 echo %bdProcess%
 
-if "%bdProcess%"=="1" (
+if [%bdProcess%] NEQ [] (
 	echo Black Desert connected
 	echo Looping
-	sleep 5
+	timeout 5
 	goto start
 ) else (
 	echo Process Ended
-	taskkill /im blackdesert64.exe
+	taskkill /pid %ProcessId%
 )
-
-
 
